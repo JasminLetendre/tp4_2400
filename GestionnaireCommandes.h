@@ -2,12 +2,12 @@
 #define GESTIONNAIRECOMMANDES_H
 
 #include "Commande.h"
-#include "MiniDesignApp.h"
+#include <vector>
 
 class GestionnaireCommandes {
 private:
-    vector<Commande*> pileUndo;
-    vector<Commande*> pileRedo;
+    std::vector<Commande*> pileUndo;
+    std::vector<Commande*> pileRedo;
 public:
     void executerCommande(Commande* cmd);
     void undo();

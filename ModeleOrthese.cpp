@@ -1,6 +1,7 @@
 #include "ModeleOrthese.h"
+#include <algorithm>
 
-ModeleOrthese::ModeleOrthese();
+ModeleOrthese::ModeleOrthese() : surface(nullptr) {}
 std::vector<Element*> ModeleOrthese::getElements() const {
     return elements;
 }

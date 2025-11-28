@@ -12,8 +12,8 @@ private:
 public:
     PointTextureDecorator(PointComponent* component, char tex);
 
-    int getX() const override;
-    int getY() const override;
+    int* getX() const override;
+    int* getY() const override;
     std::string getTextures() const override;
 };
 

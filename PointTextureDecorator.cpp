@@ -2,11 +2,11 @@
 
 PointTextureDecorator::PointTextureDecorator(PointComponent* component, char tex) : wrappee(component), texture(tex) {}
 
-int PointTextureDecorator::getX() const {
+int* PointTextureDecorator::getX() const {
     return wrappee->getX();
 }
 
-int PointTextureDecorator::getY() const {
+int* PointTextureDecorator::getY() const {
     return wrappee->getY();
 }
 

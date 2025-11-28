@@ -4,6 +4,7 @@ void Element::deplacer(int dx, int dy) {
     // TODO
 }
 
-PointComponent Element::collecterPoints() {
+PointComponent* Element::collecterPoints() const {
     // TODO: 
+    return nullptr;
 }

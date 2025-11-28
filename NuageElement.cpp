@@ -18,4 +18,5 @@ void NuageElement::deplacer(int dx, int dy) {
 
 PointComponent* NuageElement::collecterPoints() const {
     // TODO: 
+    return nullptr;
 }

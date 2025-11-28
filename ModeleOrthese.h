@@ -4,6 +4,7 @@
 #include "Element.h"
 #include <vector>
 #include "Surface.h"
+#include "SurfaceCreationStrategy.h"
 
 class ModeleOrthese
 {
