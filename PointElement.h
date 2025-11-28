@@ -2,6 +2,7 @@
 #define POINTELEMENT_H
 
 #include "PointComponent.h"
+#include "Element.h"
 
 class PointElement: public Element
 {
