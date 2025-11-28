@@ -5,6 +5,6 @@
 
 class SurfaceOrdreId : public SurfaceCreationStrategy {
 public:
-    void createSurface() override;
+    std::vector<Surface*> createSurface(ModeleOrthese& modele) override;
 };
 #endif
