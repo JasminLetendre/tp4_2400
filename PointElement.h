@@ -3,17 +3,18 @@
 
 #include "PointComponent.h"
 #include "Element.h"
+#include <memory>
 
 class PointElement: public Element
 {
 private:
-    PointComponent* point;
+    std::shared_ptr<PointComponent> point;
 
 public:
-    PointElement(PointComponent* p);
-    PointComponent* getPointComponent() const;
+    PointElement(std::shared_ptr<PointComponent> p);
+    std::shared_ptr<PointComponent> getPointComponent() const;
     void deplacer(int dx, int dy) override;
-    std::vector<PointComponent*> collecterPoints() const override;
+    std::vector<std::shared_ptr<PointComponent>> collecterPoints() const override;
 };
 
 #endif

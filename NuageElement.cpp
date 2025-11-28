@@ -1,26 +1,27 @@
 #include "NuageElement.h"
 
-std::vector<Element*> NuageElement::getEnfants() const {
+std::vector<std::shared_ptr<Element>> NuageElement::getEnfants() const {
     return enfants;
 }
 
-NuageElement::NuageElement(std::vector<Element*> p, char symbole) : symboleTexture(symbole), enfants(p) {}
+NuageElement::NuageElement(std::vector<std::shared_ptr<Element>> p, char symbole) : symboleTexture(symbole), enfants(p) {}
 
-void NuageElement::AjouterEnfant(Element* e) {
+void NuageElement::AjouterEnfant(std::shared_ptr<Element> e) {
     enfants.push_back(e);
 }
 
 void NuageElement::deplacer(int dx, int dy) {
-    for (Element* enfant : enfants) {
+    for (const auto& enfant : enfants) {
         enfant->deplacer(dx, dy);
     }
 }
 
-std::vector<PointComponent*> NuageElement::collecterPoints() const {
-    std::vector<PointComponent*> points;
-    
-    for (Element* enfant : enfants) {
-        points.insert(points.end(), enfant->collecterPoints().begin(), enfant->collecterPoints().end());
+std::vector<std::shared_ptr<PointComponent>> NuageElement::collecterPoints() const {
+    std::vector<std::shared_ptr<PointComponent>> points;
+
+    for (const auto& enfant : enfants) {
+        auto enfantPoints = enfant->collecterPoints();
+        points.insert(points.end(), enfantPoints.begin(), enfantPoints.end());
     }
 
     return points;

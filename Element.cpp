@@ -3,6 +3,6 @@
 void Element::deplacer(int dx, int dy) {
 }
 
-std::vector<PointComponent*> Element::collecterPoints() const {
+std::vector<std::shared_ptr<PointComponent>> Element::collecterPoints() const {
     return {};
 }

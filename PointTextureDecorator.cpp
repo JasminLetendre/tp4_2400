@@ -1,12 +1,12 @@
 #include "PointTextureDecorator.h"
 
-PointTextureDecorator::PointTextureDecorator(PointComponent* component, char tex) : wrappee(component), texture(tex) {}
+PointTextureDecorator::PointTextureDecorator(std::shared_ptr<PointComponent> component, char tex) : wrappee(component), texture(tex) {}
 
-int* PointTextureDecorator::getX() const {
+int& PointTextureDecorator::getX() const {
     return wrappee->getX();
 }
 
-int* PointTextureDecorator::getY() const {
+int& PointTextureDecorator::getY() const {
     return wrappee->getY();
 }
 
