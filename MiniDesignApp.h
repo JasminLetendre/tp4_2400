@@ -5,6 +5,7 @@
 #include "SurfaceCreationStrategy.h"
 #include "GestionnaireCommandes.h"
 #include "CommandFactory.h"
+
 class MiniDesignApp {
 private:
     ModeleOrthese modele;
