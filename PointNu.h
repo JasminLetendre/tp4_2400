@@ -8,11 +8,11 @@
 class PointNu : public PointComponent
 {
 private:
-    int x;
-    int y;
+    int* x;
+    int* y;
 
 public:
-    PointNu(int x, int y);
+    PointNu(int* x, int* y);
 
     int getX() const override;
     int getY() const override;

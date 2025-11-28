@@ -3,6 +3,7 @@
 
 #include "PointComponent.h"
 #include "Element.h"
+#include <vector>
 
 class NuageElement: public Element
 {

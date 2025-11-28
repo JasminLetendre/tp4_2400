@@ -1,7 +1,7 @@
 #include "Element.h"
 
 void Element::deplacer(int dx, int dy) {
-    // TODO: 
+    // TODO
 }
 
 PointComponent Element::collecterPoints() {

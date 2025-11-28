@@ -7,14 +7,15 @@ std::vector<Element*> NuageElement::getEnfants() const {
 NuageElement::NuageElement(std::vector<Element*> p, char symbole) : symboleTexture(symbole), enfants(p) {}
 
 void NuageElement::AjouterEnfant(Element* e) {
-    // TODO: Ajouter l'enfant 
+    enfants.push_back(e);
 }
 
 void NuageElement::deplacer(int dx, int dy) {
-    // TODO: Quels points de ses enfants deplacer?
+    for (Element* enfant : enfants) {
+        enfant->deplacer(dx, dy);
+    }
 }
 
 PointComponent* NuageElement::collecterPoints() const {
     // TODO: 
-    return nullptr;
 }
