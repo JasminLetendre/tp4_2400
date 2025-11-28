@@ -6,6 +6,15 @@ std::vector<std::shared_ptr<Element>> ModeleOrthese::getElements() const {
     return elements;
 }
 
+std::shared_ptr<Element> ModeleOrthese::getElement(int id) const {
+    for (const auto& e : elements) {
+        if (e->id == id) {
+            return e;
+        }
+    }
+    return nullptr;
+}
+
 void ModeleOrthese::ajouterElement(std::shared_ptr<Element> e){
     elements.push_back(e);
 }
