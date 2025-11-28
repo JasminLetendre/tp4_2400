@@ -7,11 +7,10 @@ PointComponent* PointElement::getPointComponent() const {
 PointElement::PointElement(PointComponent* p) : point(p) {}
 
 void PointElement::deplacer(int dx, int dy) {
-    // Regarder si sa va fonctionner
     *getPointComponent()->getX() += dx;
     *getPointComponent()->getY() += dy;
 }
 
-PointComponent* PointElement::collecterPoints() const {
-    return nullptr;
+std::vector<PointComponent*> PointElement::collecterPoints() const {
+    return {getPointComponent()};
 }

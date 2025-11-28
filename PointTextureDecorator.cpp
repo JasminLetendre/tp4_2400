@@ -12,5 +12,5 @@ int* PointTextureDecorator::getY() const {
 
 std::string PointTextureDecorator::getTextures() const {
     std::string baseTextures = wrappee->getTextures();
-    return baseTextures + texture; // TODO: Je suis pas sure juste verifier
+    return baseTextures + texture;
 }

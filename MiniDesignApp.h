@@ -16,5 +16,9 @@ public:
     MiniDesignApp(AffichageStrategy* affichage, SurfaceCreationStrategy* surface);
     ~MiniDesignApp();
     void executerBoucle();
+
+    ModeleOrthese& getModele();
+    SurfaceCreationStrategy* getSurfaceCreationStrategy() const;
+    AffichageStrategy* getAffichageStrategy() const;
 };
 #endif

@@ -1,8 +1,6 @@
 #include "CommandFactory.h"
 
-Commande* CommandFactory::createCommand(char code /*,MiniDesignApp* app*/) {
-    // TODO: APP ????
-
+Commande* CommandFactory::createCommand(char code/*,MiniDesignApp* app*/) {
     switch (code) {
         case 'D':
             return new CmdDeplacerPoint();

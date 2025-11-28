@@ -9,7 +9,7 @@ public:
   virtual ~Element() = default;
 
   virtual void deplacer(int dx, int dy) = 0;
-  virtual PointComponent *collecterPoints() const = 0;
+  virtual std::vector<PointComponent*> collecterPoints() const = 0;
 
   int id;
 };

@@ -16,7 +16,7 @@ public:
     std::vector<Element*> getEnfants() const;
     void AjouterEnfant(Element* e);
     void deplacer(int dx, int dy) override;
-    PointComponent* collecterPoints() const override;
+    std::vector<PointComponent*> collecterPoints() const override;
 };
 
 #endif

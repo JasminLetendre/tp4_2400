@@ -16,7 +16,12 @@ void NuageElement::deplacer(int dx, int dy) {
     }
 }
 
-PointComponent* NuageElement::collecterPoints() const {
-    // TODO: 
-    return nullptr;
+std::vector<PointComponent*> NuageElement::collecterPoints() const {
+    std::vector<PointComponent*> points;
+    
+    for (Element* enfant : enfants) {
+        points.insert(points.end(), enfant->collecterPoints().begin(), enfant->collecterPoints().end());
+    }
+
+    return points;
 }
