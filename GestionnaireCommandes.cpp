@@ -1,25 +1,25 @@
 #include "GestionnaireCommandes.h"
 
-void GestionnaireCommandes::executerCommande(Commande* cmd) {
-    cmd->execute();
+void GestionnaireCommandes::executerCommande(Commande* cmd, MiniDesignApp* app) {
+    cmd->execute(app);
     pileUndo.push_back(cmd);
     pileRedo.clear();
 }
 
-void GestionnaireCommandes::undo() {
+void GestionnaireCommandes::undo(MiniDesignApp* app) {
     if (!pileUndo.empty()) {
         Commande* cmd = pileUndo.back();
         pileUndo.pop_back();
-        cmd->undo();
+        cmd->undo(app);
         pileRedo.push_back(cmd);
     }
 }
 
-void GestionnaireCommandes::redo() {
+void GestionnaireCommandes::redo(MiniDesignApp* app) {
     if (!pileRedo.empty()) {
         Commande* cmd = pileRedo.back();
         pileRedo.pop_back();
-        cmd->execute();
+        cmd->execute(app);
         pileUndo.push_back(cmd);
     }
 }

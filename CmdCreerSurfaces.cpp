@@ -1,6 +1,7 @@
 
 #include "CmdCreerSurfaces.h"
 #include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
     
 void CmdCreerSurfaces::execute(MiniDesignApp* app) {
     doExecute(app);

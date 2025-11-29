@@ -13,8 +13,6 @@ class MiniDesignApp;
 
 class CommandFactory {
 public:
-
-    //Commande* createCommand(char code, MiniDesignApp* app);
     Commande* createCommand(char code);
 };
 

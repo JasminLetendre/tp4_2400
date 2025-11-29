@@ -1,6 +1,7 @@
 
 #include "CmdFusionerNuage.h"
 #include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
 
 void CmdFusionerNuage::execute(MiniDesignApp* app) {
     doExecute(app);

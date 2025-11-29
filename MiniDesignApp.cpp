@@ -1,8 +1,13 @@
 #include "MiniDesignApp.h"
 
+#include "AffichageIdsEtSurfaces.h"
+#include "AffichageStrategy.h"
+#include "AffichageTextures.h"
 #include "CommandFactory.h"
 #include "GestionnaireCommandes.h"
 #include "ModeleOrthese.h"
+#include "PointElement.h"
+#include "PointNu.h"
 #include "SurfaceCreationStrategy.h"
 #include "affichage.h"
 
@@ -10,12 +15,24 @@
 #include <utility>
 
 MiniDesignApp::MiniDesignApp(const std::string &args)
-    : modele_(nullptr), gestionCmd_(std::make_unique<GestionnaireCommandes>()),
-      factory_(std::make_unique<CommandFactory>()), affichageCourante_(nullptr),
+    : modele_(std::make_unique<ModeleOrthese>()), 
+      gestionCmd_(std::make_unique<GestionnaireCommandes>()),
+      factory_(std::make_unique<CommandFactory>()), 
+      affichageCourante_(nullptr),
       surfaceCourante_(nullptr), texturesNuages_{'o', '#', '$'} {
   std::vector<Point> pointsInitiaux = creerPoints(args);
-  //    TODO : faire le constructeur réel de ModeleOrthese.
-  // modele_ = std::make_unique<ModeleOrthese>(pointsInitiaux, texturesNuages_);
+  
+  // Create PointElements from the initial points and add them to the model
+  int id = 0;
+  for (const auto& point : pointsInitiaux) {
+    auto pointNu = std::make_shared<PointNu>(point.x, point.y);
+    auto pointElement = std::make_shared<PointElement>(pointNu);
+    pointElement->id = id++;
+    modele_->ajouterElement(pointElement);
+  }
+  
+  // Set default affichage strategy
+  affichageCourante_ = std::make_unique<AffichageTextures>(modele_.get());
 }
 
 ModeleOrthese &MiniDesignApp::getModele() { return *modele_; }
@@ -79,26 +96,47 @@ void MiniDesignApp::afficherMenu() const {
 }
 
 bool MiniDesignApp::traiterCommande(const std::string &cmd) {
+  if (cmd == "a") {
+    if (affichageCourante_) {
+      affichageCourante_->afficher();
+    } else {
+      std::cout << "Aucune stratégie d'affichage définie.\n";
+    }
+    return true;
+  }
+
+  if (cmd == "o1") {
+    affichageCourante_ = std::make_unique<AffichageTextures>(modele_.get());
+    std::cout << "Mode d'affichage: Textures\n";
+    return true;
+  }
+  
+  if (cmd == "o2") {
+    affichageCourante_ = std::make_unique<AffichageIdsEtSurfaces>(modele_.get());
+    std::cout << "Mode d'affichage: IDs et Surfaces\n";
+    return true;
+  }
+
   if (cmd == "q") {
     return false;
   }
   if (cmd == "u") {
-    gestionCmd_->undo();
+    gestionCmd_->undo(this);
     return true;
   }
   if (cmd == "r") {
-    gestionCmd_->redo();
+    gestionCmd_->redo(this);
     return true;
   }
 
-  auto commande = factory_->createCommand(cmd[0]/*, this*/);
+  auto commande = factory_->createCommand(cmd[0]);
 
   if (!commande) {
     std::cout << "Commande inconnue: " << cmd << "\n";
     return true;
   }
 
-  gestionCmd_->executerCommande(std::move(commande));
+  gestionCmd_->executerCommande(std::move(commande), this);
 
   return true;
 }

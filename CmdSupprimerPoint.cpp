@@ -1,6 +1,7 @@
 
 #include "CmdSupprimerPoint.h"
 #include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
 
 void CmdSupprimerPoint::execute(MiniDesignApp* app) {
     doExecute(app);

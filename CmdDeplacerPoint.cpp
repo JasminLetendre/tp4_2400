@@ -1,5 +1,7 @@
 #include "CmdDeplacerPoint.h"
 #include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
+
     
 void CmdDeplacerPoint::execute(MiniDesignApp* app) {
     doExecute(app);

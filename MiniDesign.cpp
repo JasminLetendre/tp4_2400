@@ -2,6 +2,11 @@
 #include <sstream>
 #include <string>
 #include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
+#include "GestionnaireCommandes.h"
+#include "CommandFactory.h"
+#include "AffichageStrategy.h"
+#include "SurfaceCreationStrategy.h"
 
 using namespace std;
 
