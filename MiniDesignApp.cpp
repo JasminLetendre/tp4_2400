@@ -91,7 +91,7 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
     return true;
   }
 
-  auto commande = factory_->createCommand(cmd[0], this);
+  auto commande = factory_->createCommand(cmd[0]/*, this*/);
 
   if (!commande) {
     std::cout << "Commande inconnue: " << cmd << "\n";
