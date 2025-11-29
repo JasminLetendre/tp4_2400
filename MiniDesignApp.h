@@ -22,6 +22,9 @@ public:
     void setAffichageStrategy(std::unique_ptr<AffichageStrategy> strategy);
     void setSurfaceCreationStrategy(std::unique_ptr<SurfaceCreationStrategy> strategy);
 
+    SurfaceCreationStrategy* getSurfaceCreationStrategy() const;
+    AffichageStrategy* getAffichageStrategy() const;
+
 private:
     void afficherMenu() const;
     bool traiterCommande(const std::string& cmd);
@@ -32,5 +35,6 @@ private:
     std::unique_ptr<AffichageStrategy> affichageCourante_;
     std::unique_ptr<SurfaceCreationStrategy> surfaceCourante_;
     std::vector<char> texturesNuages_;
+
 };
 #endif

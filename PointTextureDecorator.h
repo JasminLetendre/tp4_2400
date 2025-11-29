@@ -3,17 +3,18 @@
 
 #include "PointComponent.h"
 #include <string>
+#include <memory>
 
 class PointTextureDecorator : public PointComponent {
 private:
-    PointComponent* wrappee;
+    std::shared_ptr<PointComponent> wrappee;
     char texture;
 
 public:
-    PointTextureDecorator(PointComponent* component, char tex);
+    PointTextureDecorator(std::shared_ptr<PointComponent> component, char tex);
 
-    int* getX() const override;
-    int* getY() const override;
+    int& getX() const override;
+    int& getY() const override;
     std::string getTextures() const override;
 };
 

@@ -1,10 +1,8 @@
 #include "Element.h"
 
 void Element::deplacer(int dx, int dy) {
-    // TODO
 }
 
-PointComponent* Element::collecterPoints() const {
-    // TODO: 
-    return nullptr;
+std::vector<std::shared_ptr<PointComponent>> Element::collecterPoints() const {
+    return {};
 }

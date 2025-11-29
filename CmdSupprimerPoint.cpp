@@ -1,18 +1,20 @@
 
 #include "CmdSupprimerPoint.h"
-    
-void CmdSupprimerPoint::execute() {
-    doExecute();
+#include "MiniDesignApp.h"
+
+void CmdSupprimerPoint::execute(MiniDesignApp* app) {
+    doExecute(app);
 }
 
-void CmdSupprimerPoint::undo() {
-    doUndo();
+void CmdSupprimerPoint::undo(MiniDesignApp* app) {
+    doUndo(app);
 }
 
-void CmdSupprimerPoint::doExecute() {
-    // Implementation of the actual execution logic
+void CmdSupprimerPoint::doExecute(MiniDesignApp* app) {
+    point = app->getModele().getElements()[pointId]; 
+    app->getModele().supprimerElement(pointId);
 }
 
-void CmdSupprimerPoint::doUndo() {
-    // Implementation of the actual undo logic
+void CmdSupprimerPoint::doUndo(MiniDesignApp* app) {
+    app->getModele().ajouterElement(point);
 }

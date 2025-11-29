@@ -1,17 +1,16 @@
 #include "PointElement.h"
 
-PointComponent* PointElement::getPointComponent() const {
+std::shared_ptr<PointComponent> PointElement::getPointComponent() const {
     return point;
 }
 
-PointElement::PointElement(PointComponent* p) : point(p) {}
+PointElement::PointElement(std::shared_ptr<PointComponent> p) : point(p) {}
 
 void PointElement::deplacer(int dx, int dy) {
-    // Regarder si sa va fonctionner
-    *getPointComponent()->getX() += dx;
-    *getPointComponent()->getY() += dy;
+    point->getX() += dx;
+    point->getY() += dy;
 }
 
-PointComponent* PointElement::collecterPoints() const {
-    return nullptr;
+std::vector<std::shared_ptr<PointComponent>> PointElement::collecterPoints() const {
+    return {point};
 }

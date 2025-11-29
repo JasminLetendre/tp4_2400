@@ -1,18 +1,18 @@
 
 #include "CmdCreerSurfaces.h"
+#include "MiniDesignApp.h"
     
-void CmdCreerSurfaces::execute() {
-    doExecute();
+void CmdCreerSurfaces::execute(MiniDesignApp* app) {
+    doExecute(app);
 }
 
-void CmdCreerSurfaces::undo() {
-    doUndo();
+void CmdCreerSurfaces::undo(MiniDesignApp* app) {
+    doUndo(app);
 }
 
-void CmdCreerSurfaces::doExecute() {
-    // Implementation of the actual execution logic
+void CmdCreerSurfaces::doExecute(MiniDesignApp* app) {
+    
 }
 
-void CmdCreerSurfaces::doUndo() {
-    // Implementation of the actual undo logic
+void CmdCreerSurfaces::doUndo(MiniDesignApp* app) {
 }
