@@ -1,6 +1,6 @@
 #include "CommandFactory.h"
 
-Commande* CommandFactory::createCommand(char code /*,MiniDesignApp* app*/) {
+Commande* CommandFactory::createCommand(char code, MiniDesignApp* app) {
     // TODO: APP ????
 
     switch (code) {

@@ -2,7 +2,7 @@
 #define COMMANDFACTORY_H
 
 #include "Commande.h"
-//#include "MiniDesignApp.h"
+#include "MiniDesignApp.h"
 #include "CmdFusionerNuage.h"
 #include "CmdCreerSurfaces.h"
 #include "CmdDeplacerPoint.h"
@@ -10,7 +10,7 @@
 
 class CommandFactory {
 public:
-    Commande* createCommand(char code /*,MiniDesignApp* app*/);
+    Commande* createCommand(char code, MiniDesignApp* app);
 };
 
 #endif
