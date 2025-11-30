@@ -8,12 +8,13 @@
 #include "CmdCreerSurfaces.h"
 #include "CmdDeplacerPoint.h"
 #include "CmdSupprimerPoint.h"
+#include <string>
 
 class MiniDesignApp;
 
 class CommandFactory {
 public:
-    Commande* createCommand(char code);
+    Commande* createCommand(const std::string& code);
 };
 
 #endif

@@ -117,6 +117,19 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
     return true;
   }
 
+  if(cmd == "f" || cmd == "d" || cmd == "s" || cmd == "c1" || cmd == "c2") {
+    auto commande = factory_->createCommand(cmd);
+
+    if (!commande) {
+      std::cout << "Commande inconnue: " << cmd << "\n";
+      return true;
+    }
+
+    gestionCmd_->executerCommande(std::move(commande), this);
+
+    return true;
+  }
+
   if (cmd == "q") {
     return false;
   }
@@ -129,7 +142,7 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
     return true;
   }
 
-  auto commande = factory_->createCommand(cmd[0]);
+  auto commande = factory_->createCommand(cmd);
 
   if (!commande) {
     std::cout << "Commande inconnue: " << cmd << "\n";

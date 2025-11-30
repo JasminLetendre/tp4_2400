@@ -12,10 +12,20 @@ void CmdDeplacerPoint::undo(MiniDesignApp* app) {
 }
 
 void CmdDeplacerPoint::doExecute(MiniDesignApp* app) {
-    app->getModele().deplacerElement(pointId, nouveauX - ancienX, nouveauY - ancienY);
+    auto points = app->getModele().getElement(pointId)->collecterPoints();
+    
+    if (!points.empty()) {
+        ancienX = points.at(0)->getX();
+        ancienY = points.at(0)->getY();
+    } else {
+        ancienX = 0;
+        ancienY = 0;
+    }
+    
+    app->getModele().deplacerElement(pointId, nouveauX, nouveauY);
 }
 
 void CmdDeplacerPoint::doUndo(MiniDesignApp* app) {
     // Implementation of the actual undo logic
-    app->getModele().deplacerElement(pointId, ancienX - nouveauX, ancienY - nouveauY);
+    app->getModele().deplacerElement(pointId, ancienX, ancienY);
 }
