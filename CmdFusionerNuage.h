@@ -4,13 +4,14 @@
 #include "Commande.h"
 #include <vector>
 #include "NuageElement.h"
+#include <string>
 
 class MiniDesignApp;
 
 class CmdFusionerNuage : public Commande {
 public:
     virtual ~CmdFusionerNuage() = default;
-    CmdFusionerNuage(int idNuage, char symbole, const std::vector<int>& idsElements);
+    CmdFusionerNuage(int idNuage, const std::string& symbole, const std::vector<int>& idsElements);
     void execute(MiniDesignApp* app) override;
     void undo(MiniDesignApp* app) override;
 protected:
@@ -18,7 +19,7 @@ protected:
     void doUndo(MiniDesignApp* app) override;
 private:
     int idNuage;
-    char symbole;
+    std::string symbole;
     std::vector<int> idsElements;
     std::shared_ptr<NuageElement> nuage;
 };

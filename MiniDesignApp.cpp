@@ -26,8 +26,7 @@ MiniDesignApp::MiniDesignApp(const std::string &args)
   int id = 0;
   for (const auto& point : pointsInitiaux) {
     auto pointNu = std::make_shared<PointNu>(point.x, point.y);
-    auto pointElement = std::make_shared<PointElement>(pointNu);
-    pointElement->id = id++;
+    auto pointElement = std::make_shared<PointElement>(pointNu, id++);
     modele_->ajouterElement(pointElement);
   }
   
@@ -97,23 +96,59 @@ void MiniDesignApp::afficherMenu() const {
 
 bool MiniDesignApp::traiterCommande(const std::string &cmd) {
   if (cmd == "a") {
-    if (affichageCourante_) {
-      affichageCourante_->afficher();
-    } else {
-      std::cout << "Aucune stratégie d'affichage définie.\n";
+    // Implementation of display strategy
+    std::cout << "\n=== Affichage des points avec textures ===\n";
+    
+    auto elements = modele_->getElements();
+    
+    if (elements.empty()) {
+        std::cout << "Aucun élément à afficher.\n";
+        return true;
     }
+
+    
+    for (const auto& element : elements) {
+        auto points = element->collecterPoints();
+
+        if(points.size() == 1) {
+          std::cout << "Point ID:" << element->id 
+                    << " (" << points[0]->getX() << "," << points[0]->getY() << ")";
+          
+          std::string textures = points[0]->getTextures();
+
+          if (textures.empty()) {
+            textures = " ";
+          }
+
+          std::cout << " Textures: \'" << textures << "\'";
+          
+          std::cout << "\n";
+        }else{
+          std::cout << "Nuage ID:" << element->id << " contient les elements:";
+
+          for (const auto& enfant : static_cast<NuageElement*>(element.get())->getEnfants()) {
+            std::cout << " " << enfant->id;
+          }
+
+          std::cout << "\n";
+        }
+    }
+
+    std::cout << std::endl;
     return true;
   }
 
   if (cmd == "o1") {
     affichageCourante_ = std::make_unique<AffichageTextures>(modele_.get());
     std::cout << "Mode d'affichage: Textures\n";
+    affichageCourante_->afficher();
     return true;
   }
   
   if (cmd == "o2") {
     affichageCourante_ = std::make_unique<AffichageIdsEtSurfaces>(modele_.get());
     std::cout << "Mode d'affichage: IDs et Surfaces\n";
+    affichageCourante_->afficher();
     return true;
   }
 

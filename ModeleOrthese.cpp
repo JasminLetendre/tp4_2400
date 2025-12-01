@@ -1,9 +1,13 @@
 #include "ModeleOrthese.h"
 #include <algorithm>
 
-ModeleOrthese::ModeleOrthese() : surface(nullptr) {}
+ModeleOrthese::ModeleOrthese() {}
 std::vector<std::shared_ptr<Element>> ModeleOrthese::getElements() const {
     return elements;
+}
+
+std::vector<std::shared_ptr<Surface>> ModeleOrthese::getSurfaces() const {
+    return surfaces;
 }
 
 std::shared_ptr<Element> ModeleOrthese::getElement(int id) const {
@@ -35,5 +39,5 @@ void ModeleOrthese::deplacerElement(int id, int dx, int dy){
 }
 
 void ModeleOrthese::recalculerSurface(SurfaceCreationStrategy* strategy){
-    // Implementation needed
+    surfaces = strategy->createSurface(*this);
 }

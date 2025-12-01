@@ -1,5 +1,9 @@
 #include "CommandFactory.h"
+#include "SurfaceCreationStrategy.h"
+#include "SurfaceOrdreId.h"
+#include "SurfaceDistanceMinimal.h"
 #include <iostream>
+#include <string>
 
 Commande* CommandFactory::createCommand(const std::string& code) {
     if (code == "d") {
@@ -13,14 +17,14 @@ Commande* CommandFactory::createCommand(const std::string& code) {
         return new CmdDeplacerPoint(id, oldX, oldY, newX, newY);
     }
     else if (code == "c1") {
-        return new CmdCreerSurfaces();
+        return new CmdCreerSurfaces(new SurfaceOrdreId());
     }
     else if (code == "c2") {
-        return new CmdCreerSurfaces();
+        return new CmdCreerSurfaces(new SurfaceDistanceMinimal());
     }
     else if (code == "f") {
         int idNuage;
-        char symbole;
+        std::string symbole;
         int n;
         std::vector<int> idsElements;
         std::cout << "Enter new Nuage ID: "; // On devrait probablement en creer nous meme

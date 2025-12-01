@@ -9,7 +9,7 @@ class AffichageTextures : public AffichageStrategy {
 private:
     ModeleOrthese* modele;
 public:
-    AffichageTextures(ModeleOrthese* m);
+    AffichageTextures(ModeleOrthese* modele) : AffichageStrategy(modele), modele(modele) {}
     void afficher() override;
 };
 #endif

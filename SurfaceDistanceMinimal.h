@@ -5,6 +5,7 @@
 
 class SurfaceDistanceMinimal : public SurfaceCreationStrategy {
 public:
-    std::vector<Surface*> createSurface(ModeleOrthese& modele) override;
+    SurfaceDistanceMinimal() = default;
+    std::vector<std::shared_ptr<Surface>> createSurface(ModeleOrthese& modele) override;
 };
 #endif

@@ -1,6 +1,7 @@
 #include "PointTextureDecorator.h"
+#include <string>
 
-PointTextureDecorator::PointTextureDecorator(std::shared_ptr<PointComponent> component, char tex) : wrappee(component), texture(tex) {}
+PointTextureDecorator::PointTextureDecorator(std::shared_ptr<PointComponent> component, std::string tex) : wrappee(component), texture(tex) {}
 
 int& PointTextureDecorator::getX() const {
     return wrappee->getX();
@@ -11,6 +12,9 @@ int& PointTextureDecorator::getY() const {
 }
 
 std::string PointTextureDecorator::getTextures() const {
-    std::string baseTextures = wrappee->getTextures();
-    return baseTextures + texture;
+    return texture;
+}
+
+void PointTextureDecorator::addTexture(char symbole) {
+    texture += symbole;
 }

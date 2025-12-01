@@ -1,14 +1,11 @@
 #include "AffichageTextures.h"
 #include "ModeleOrthese.h"
 #include "PointComponent.h"
+#include "affichage.h"
 #include <iostream>
 #include <vector>
 
-AffichageTextures::AffichageTextures(ModeleOrthese* m) : modele(m) {}
-
 void AffichageTextures::afficher() {
-    std::cout << "\n=== Affichage des points avec textures ===\n";
-    
     auto elements = modele->getElements();
     
     if (elements.empty()) {
@@ -16,19 +13,56 @@ void AffichageTextures::afficher() {
         return;
     }
     
+    // Create a grid for visual display
+    std::vector<std::vector<std::string>> grille(HAUTEUR, std::vector<std::string>(LARGEUR, " "));
+
+    // Collect all points with their coordinates
+    std::vector<Point> pointsForLines;
+    
+    // First, draw lines between consecutive points
+
+    // TODO : Seulement afficher si surface existe
+ /*   for (const auto& element : elements) {
+        auto points = element->collecterPoints();
+        
+        for (const auto& point : points) {
+            pointsForLines.push_back({point->getX(), point->getY()});
+        }
+    }
+    
+    // TODO : Seulement afficher si surface existe
+    // Draw lines between consecutive points
+    for (size_t i = 0; i < pointsForLines.size(); ++i) {
+        size_t next = (i + 1) % pointsForLines.size();
+        tracerLigne(grille, 
+                    pointsForLines[i].x, pointsForLines[i].y,
+                    pointsForLines[next].x, pointsForLines[next].y);
+    }*/
+    
+    // Then overlay the IDs on top of the lines
     for (const auto& element : elements) {
         auto points = element->collecterPoints();
         
         for (const auto& point : points) {
-            std::cout << "Point ID:" << element->id 
-                      << " (" << point->getX() << "," << point->getY() << ")";
+            int x = point->getX();
+            int y = point->getY();
             
-            std::string textures = point->getTextures();
-            if (!textures.empty()) {
-                std::cout << " Textures: " << textures;
+            // Mark on grid if within bounds (IDs override lines)
+            if (x >= 0 && x < LARGEUR && y >= 0 && y < HAUTEUR) {
+                std::string textures = point->getTextures();
+                
+                if (!textures.empty()) {
+                    grille[y][x] = textures;  // Just take the first texture for simplicity
+                }else{
+                    grille[y][x] = '.';
+                }
             }
-            std::cout << "\n";
         }
     }
-    std::cout << std::endl;
+
+    for (int y = HAUTEUR - 1; y >= 0; --y) {
+        for (int x = 0; x < LARGEUR; ++x)
+            std::cout << grille[y][x];
+        std::cout << '\n';
+    }
 }

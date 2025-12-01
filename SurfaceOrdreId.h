@@ -5,6 +5,7 @@
 
 class SurfaceOrdreId : public SurfaceCreationStrategy {
 public:
-    std::vector<Surface*> createSurface(ModeleOrthese& modele) override;
+    SurfaceOrdreId() = default;
+    std::vector<std::shared_ptr<Surface>> createSurface(ModeleOrthese& modele) override;
 };
 #endif

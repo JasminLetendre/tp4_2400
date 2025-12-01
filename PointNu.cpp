@@ -13,3 +13,7 @@ int& PointNu::getY() const {
 std::string PointNu::getTextures() const {
     return ""; 
 }
+
+void PointNu::addTexture(char symbole) {
+    // No-op for PointNu as it does not store textures
+}

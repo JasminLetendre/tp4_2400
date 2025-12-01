@@ -9,7 +9,7 @@ class AffichageIdsEtSurfaces : public AffichageStrategy {
 private:
     ModeleOrthese* modele;
 public:
-    AffichageIdsEtSurfaces(ModeleOrthese* m);
+    AffichageIdsEtSurfaces(ModeleOrthese* modele) : AffichageStrategy(modele), modele(modele) {}
     void afficher() override;
 };
 #endif

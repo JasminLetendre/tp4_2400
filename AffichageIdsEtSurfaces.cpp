@@ -5,8 +5,6 @@
 #include <iostream>
 #include <vector>
 
-AffichageIdsEtSurfaces::AffichageIdsEtSurfaces(ModeleOrthese* m) : modele(m) {}
-
 void AffichageIdsEtSurfaces::afficher() {
     auto elements = modele->getElements();
     
@@ -21,21 +19,41 @@ void AffichageIdsEtSurfaces::afficher() {
     // Collect all points with their coordinates
     std::vector<Point> pointsForLines;
     
-    // First, draw lines between consecutive points
-    for (const auto& element : elements) {
-        auto points = element->collecterPoints();
-        
-        for (const auto& point : points) {
-            pointsForLines.push_back({point->getX(), point->getY()});
-        }
-    }
+    // First, draw lines between surfaces
+    std::vector<std::shared_ptr<Surface>> surfaces = modele->getSurfaces();
     
-    // Draw lines between consecutive points
-    for (size_t i = 0; i < pointsForLines.size(); ++i) {
-        size_t next = (i + 1) % pointsForLines.size();
-        tracerLigne(grille, 
-                    pointsForLines[i].x, pointsForLines[i].y,
-                    pointsForLines[next].x, pointsForLines[next].y);
+    if(!surfaces.empty()) {
+        // Draw each surface (line between two points)
+        for (const auto& surface : surfaces) {
+            // Find the elements by ID
+            std::shared_ptr<Element> elementA = nullptr;
+            std::shared_ptr<Element> elementB = nullptr;
+            
+            for (const auto& elem : elements) {
+                if (elem->id == surface->idPointA) {
+                    elementA = elem;
+                }
+                if (elem->id == surface->idPointB) {
+                    elementB = elem;
+                }
+            }
+
+            if (elementA && elementB) {
+                // Get the points from the elements
+                auto pointsA = elementA->collecterPoints();
+                auto pointsB = elementB->collecterPoints();
+                
+                if (!pointsA.empty() && !pointsB.empty()) {
+                    int x0 = pointsA[0]->getX();
+                    int y0 = pointsA[0]->getY();
+                    int x1 = pointsB[0]->getX();
+                    int y1 = pointsB[0]->getY();
+                    
+                    // Draw the line between the two points
+                    tracerLigne(grille, x0, y0, x1, y1);
+                }
+            }
+        }
     }
     
     // Then overlay the IDs on top of the lines

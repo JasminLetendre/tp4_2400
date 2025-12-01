@@ -11,11 +11,12 @@ class ModeleOrthese
 {
 private:
     std::vector<std::shared_ptr<Element>> elements;
-    Surface* surface;
+    std::vector<std::shared_ptr<Surface>> surfaces;
 
 public:
     ModeleOrthese();
     std::vector<std::shared_ptr<Element>> getElements() const;
+    std::vector<std::shared_ptr<Surface>> getSurfaces() const;
     void ajouterElement(std::shared_ptr<Element> e);
     std::shared_ptr<Element> getElement(int id) const;
     void supprimerElement(int id);

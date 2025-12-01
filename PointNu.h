@@ -18,6 +18,7 @@ public:
     int& getX() const override;
     int& getY() const override;
     std::string getTextures() const override;
+    void addTexture(char symbole) override;
 };
 
 #endif
