@@ -62,18 +62,24 @@ void MiniDesignApp::setSurfaceCreationStrategy(
 
 void MiniDesignApp::executerBoucle() {
   std::string cmd;
+  bool showMenu = true;
 
   while (true) {
-    afficherMenu();
+    if (showMenu) {
+      afficherMenu();
+    }
 
     std::cout << "> ";
     if (!std::getline(std::cin, cmd)) {
       break;
     }
 
-    if (cmd.empty())
+    if (cmd.empty()) {
+      showMenu = false;
       continue;
+    }
 
+    showMenu = true;
     if (!traiterCommande(cmd))
       break;
   }

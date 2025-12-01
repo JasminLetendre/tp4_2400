@@ -20,29 +20,15 @@ void CmdFusionerNuage::doExecute(MiniDesignApp* app) {
     for (auto id : idsElements)
     {
         std::shared_ptr<Element> element = app->getModele().getElement(id);
-        auto points = element->collecterPoints();
-        for (auto& p : points)
-        {
-            p = std::shared_ptr<PointComponent>(new PointTextureDecorator(p, symbole));
-        }
+        element->appliquerTexture(symbole);
         nuage->AjouterEnfant(element);
-    }
-
-    for (auto enfant : nuage->getEnfants())
-    {
-        std::cout << "Symbole enfant ID " << enfant->id << ": " << enfant->collecterPoints()[0]->getTextures() << std::endl;
     }
 
     app->getModele().ajouterElement(nuage);
 }
 
 void CmdFusionerNuage::doUndo(MiniDesignApp* app) {
-    app->getModele().supprimerElement(idNuage);
-    
-    for (auto id : idsElements)
-    {
-        app->getModele().ajouterElement(app->getModele().getElement(id));
-    }
+   // Do nothing / not for this tp
 }
 
 CmdFusionerNuage::CmdFusionerNuage(int idNuageVal, const std::string& symboleVal, const std::vector<int>& idsElementsVal)

@@ -1,5 +1,6 @@
 #include "PointTextureDecorator.h"
 #include <string>
+#include <algorithm>
 
 PointTextureDecorator::PointTextureDecorator(std::shared_ptr<PointComponent> component, std::string tex) : wrappee(component), texture(tex) {}
 
@@ -12,7 +13,10 @@ int& PointTextureDecorator::getY() const {
 }
 
 std::string PointTextureDecorator::getTextures() const {
-    return texture;
+    std::string allTextures = wrappee->getTextures() + texture;
+    // Sort textures alphabetically for consistent display
+    std::sort(allTextures.begin(), allTextures.end());
+    return allTextures;
 }
 
 void PointTextureDecorator::addTexture(char symbole) {

@@ -16,28 +16,41 @@ void AffichageTextures::afficher() {
     // Create a grid for visual display
     std::vector<std::vector<std::string>> grille(HAUTEUR, std::vector<std::string>(LARGEUR, " "));
 
-    // Collect all points with their coordinates
-    std::vector<Point> pointsForLines;
+    std::vector<std::shared_ptr<Surface>> surfaces = modele->getSurfaces();
     
-    // First, draw lines between consecutive points
+    if(!surfaces.empty()) {
+        // Draw each surface (line between two points)
+        for (const auto& surface : surfaces) {
+            // Find the elements by ID
+            std::shared_ptr<Element> elementA = nullptr;
+            std::shared_ptr<Element> elementB = nullptr;
+            
+            for (const auto& elem : elements) {
+                if (elem->id == surface->idPointA) {
+                    elementA = elem;
+                }
+                if (elem->id == surface->idPointB) {
+                    elementB = elem;
+                }
+            }
 
-    // TODO : Seulement afficher si surface existe
- /*   for (const auto& element : elements) {
-        auto points = element->collecterPoints();
-        
-        for (const auto& point : points) {
-            pointsForLines.push_back({point->getX(), point->getY()});
+            if (elementA && elementB) {
+                // Get the points from the elements
+                auto pointsA = elementA->collecterPoints();
+                auto pointsB = elementB->collecterPoints();
+                
+                if (!pointsA.empty() && !pointsB.empty()) {
+                    int x0 = pointsA[0]->getX();
+                    int y0 = pointsA[0]->getY();
+                    int x1 = pointsB[0]->getX();
+                    int y1 = pointsB[0]->getY();
+                    
+                    // Draw the line between the two points
+                    tracerLigne(grille, x0, y0, x1, y1);
+                }
+            }
         }
     }
-    
-    // TODO : Seulement afficher si surface existe
-    // Draw lines between consecutive points
-    for (size_t i = 0; i < pointsForLines.size(); ++i) {
-        size_t next = (i + 1) % pointsForLines.size();
-        tracerLigne(grille, 
-                    pointsForLines[i].x, pointsForLines[i].y,
-                    pointsForLines[next].x, pointsForLines[next].y);
-    }*/
     
     // Then overlay the IDs on top of the lines
     for (const auto& element : elements) {

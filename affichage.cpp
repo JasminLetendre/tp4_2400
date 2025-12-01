@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void tracerLigne(vector<vector<char>>& grille, int x0, int y0, int x1, int y1) {
+void tracerLigne(vector<vector<std::string>>& grille, int x0, int y0, int x1, int y1) {
     // Distance verticale
     int lignes = abs(y1 - y0);
     // Si la ligne est horizontale 
@@ -35,7 +35,7 @@ void tracerLigne(vector<vector<char>>& grille, int x0, int y0, int x1, int y1) {
 
 void imprimerGrille(const vector<Point>& points) {
     // On crée une grille.
-    vector<vector<char>> grille(HAUTEUR, vector<char>(LARGEUR, ' '));
+    vector<vector<std::string>> grille(HAUTEUR, vector<std::string>(LARGEUR, " "));
 
     // On trace une ligne entre le point 0 et 1.
     // TODO : Remplacer par un tracé selon la commande de l'utilisateur (c1 ou c2)

@@ -1,9 +1,11 @@
 #include "AffichageIdsEtSurfaces.h"
 #include "ModeleOrthese.h"
 #include "PointComponent.h"
+#include "PointElement.h"
 #include "affichage.h"
 #include <iostream>
 #include <vector>
+#include <memory>
 
 void AffichageIdsEtSurfaces::afficher() {
     auto elements = modele->getElements();
@@ -14,10 +16,7 @@ void AffichageIdsEtSurfaces::afficher() {
     }
     
     // Create a grid for visual display
-    std::vector<std::vector<char>> grille(HAUTEUR, std::vector<char>(LARGEUR, ' '));
-    
-    // Collect all points with their coordinates
-    std::vector<Point> pointsForLines;
+    std::vector<std::vector<std::string>> grille(HAUTEUR, std::vector<std::string>(LARGEUR, " "));
     
     // First, draw lines between surfaces
     std::vector<std::shared_ptr<Surface>> surfaces = modele->getSurfaces();
@@ -56,18 +55,21 @@ void AffichageIdsEtSurfaces::afficher() {
         }
     }
     
-    // Then overlay the IDs on top of the lines
+    // Then overlay the IDs on top of the lines (only for PointElements, not NuageElements)
     for (const auto& element : elements) {
-        auto points = element->collecterPoints();
-        
-        for (const auto& point : points) {
-            int x = point->getX();
-            int y = point->getY();
+        // Only display ID if it's a PointElement, not a NuageElement
+        if (std::dynamic_pointer_cast<PointElement>(element)) {
+            auto points = element->collecterPoints();
             
-            // Mark on grid if within bounds (IDs override lines)
-            if (x >= 0 && x < LARGEUR && y >= 0 && y < HAUTEUR) {
-                char idChar = '0' + (element->id % 10);
-                grille[y][x] = idChar;
+            for (const auto& point : points) {
+                int x = point->getX();
+                int y = point->getY();
+                
+                // Mark on grid if within bounds (IDs override lines)
+                if (x >= 0 && x < LARGEUR && y >= 0 && y < HAUTEUR) {
+                    char idChar = '0' + (element->id % 10);
+                    grille[y][x] = idChar;
+                }
             }
         }
     }

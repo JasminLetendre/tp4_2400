@@ -19,6 +19,7 @@ public:
     void AjouterEnfant(std::shared_ptr<Element> e);
     void deplacer(int dx, int dy) override;
     std::vector<std::shared_ptr<PointComponent>> collecterPoints() override;
+    void appliquerTexture(const std::string& symbole) override;
 };
 
 #endif

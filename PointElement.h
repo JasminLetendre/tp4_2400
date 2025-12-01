@@ -15,6 +15,8 @@ public:
     std::shared_ptr<PointComponent> getPointComponent() const;
     void deplacer(int dx, int dy) override;
     std::vector<std::shared_ptr<PointComponent>> collecterPoints() override;
+    void appliquerTexture(const std::string& symbole) override;
+    void setPointComponent(std::shared_ptr<PointComponent> p);
 };
 
 #endif

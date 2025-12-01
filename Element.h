@@ -11,6 +11,7 @@ public:
 
   virtual void deplacer(int dx, int dy) = 0;
   virtual std::vector<std::shared_ptr<PointComponent>> collecterPoints() = 0;
+  virtual void appliquerTexture(const std::string& symbole) = 0;
 
   int id;
 };

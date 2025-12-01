@@ -29,3 +29,9 @@ std::vector<std::shared_ptr<PointComponent>> NuageElement::collecterPoints() {
 
     return points;
 }
+
+void NuageElement::appliquerTexture(const std::string& symbole) {
+    for (auto& enfant : enfants) {
+        enfant->appliquerTexture(symbole);
+    }
+}
