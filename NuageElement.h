@@ -20,6 +20,7 @@ public:
   void deplacer(int dx, int dy) override;
   std::vector<std::shared_ptr<PointComponent>> collecterPoints() override;
   void appliquerTexture(const std::string &symbole) override;
+  std::string getSymboleTexture() const { return symboleTexture; }
 };
 
 #endif

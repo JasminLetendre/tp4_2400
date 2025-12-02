@@ -8,12 +8,10 @@
 Commande *CommandFactory::createCommand(const std::string &code) {
   if (code == "d") {
     int id, oldX = 0, oldY = 0, newX, newY;
-    std::cout << "Enter point ID: ";
+    std::cout << "ID du point à déplacer: ";
     std::cin >> id;
-    std::cout << "Enter new X position: ";
-    std::cin >> newX;
-    std::cout << "Enter new Y position: ";
-    std::cin >> newY;
+    std::cout << "Nouvelle position (x y): ";
+    std::cin >> newX >> newY;
     return new CmdDeplacerPoint(id, oldX, oldY, newX, newY);
   } else if (code == "c1") {
     return new CmdCreerSurfaces(new SurfaceOrdreId());
@@ -22,24 +20,21 @@ Commande *CommandFactory::createCommand(const std::string &code) {
   } else if (code == "f") {
     int idNuage;
     std::string symbole;
-    int n;
     std::vector<int> idsElements;
-    std::cout << "Enter new Nuage ID: ";
-    std::cin >> idNuage;
-    std::cout << "Enter texture symbol: ";
-    std::cin >> symbole;
-    std::cout << "Enter number of elements to fuse: ";
-    std::cin >> n;
-    for (int i = 0; i < n; ++i) {
-      int elemId;
-      std::cout << "Enter element ID " << (i + 1) << ": ";
-      std::cin >> elemId;
-      idsElements.push_back(elemId);
+    std::cout << "IDs de points/nuages à fusionner (ex: 0 2 5): ";
+    int id;
+    while (std::cin >> id) {
+      idsElements.push_back(id);
+      if (std::cin.peek() == '\n') break;
     }
+    std::cout << "Symbole de texture: ";
+    std::cin >> symbole;
+    std::cout << "ID du nouveau nuage: ";
+    std::cin >> idNuage;
     return new CmdFusionerNuage(idNuage, symbole, idsElements);
   } else if (code == "s") {
     int pointId;
-    std::cout << "Enter point ID to delete: ";
+    std::cout << "Id du point à supprimer: ";
     std::cin >> pointId;
     return new CmdSupprimerPoint(pointId);
   }

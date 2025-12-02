@@ -112,8 +112,8 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
       auto points = element->collecterPoints();
 
       if (points.size() == 1) {
-        std::cout << "Point ID:" << element->id << " (" << points[0]->getX()
-                  << "," << points[0]->getY() << ")";
+        std::cout << element->id << ": (" << points[0]->getX()
+                  << "," << points[0]->getY() << ")  textures: '";
 
         std::string textures = points[0]->getTextures();
 
@@ -121,14 +121,13 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
           textures = " ";
         }
 
-        std::cout << " Textures: \'" << textures << "\'";
-
-        std::cout << "\n";
+        std::cout << textures << "'\n";
       } else {
-        std::cout << "Nuage ID:" << element->id << " contient les elements:";
+        auto nuage = static_cast<NuageElement *>(element.get());
+        std::cout << element->id << ": Nuage '" << nuage->getSymboleTexture() 
+                  << "'  contient les éléments:";
 
-        for (const auto &enfant :
-             static_cast<NuageElement *>(element.get())->getEnfants()) {
+        for (const auto &enfant : nuage->getEnfants()) {
           std::cout << " " << enfant->id;
         }
 
