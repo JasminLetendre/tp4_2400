@@ -8,6 +8,6 @@ int &PointNu::getY() const { return const_cast<int &>(y); }
 
 std::string PointNu::getTextures() const { return ""; }
 
-void PointNu::addTexture(char symbole) {
+void PointNu::addTexture(char) {
   // No-op for PointNu as it does not store textures
 }

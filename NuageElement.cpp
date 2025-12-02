@@ -9,7 +9,7 @@ std::vector<std::shared_ptr<Element>> &NuageElement::getEnfants() {
 
 NuageElement::NuageElement(std::vector<std::shared_ptr<Element>> p,
                            const std::string &symbole, int idNuage)
-    : symboleTexture(symbole), enfants(p), Element(idNuage) {}
+    : Element(idNuage), symboleTexture(symbole), enfants(p) {}
 
 void NuageElement::AjouterEnfant(std::shared_ptr<Element> e) {
   enfants.push_back(e);

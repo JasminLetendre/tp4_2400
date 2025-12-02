@@ -7,7 +7,7 @@
 
 Commande *CommandFactory::createCommand(const std::string &code) {
   if (code == "d") {
-    int id, oldX, oldY, newX, newY;
+    int id, oldX = 0, oldY = 0, newX, newY;
     std::cout << "Enter point ID: ";
     std::cin >> id;
     std::cout << "Enter new X position: ";

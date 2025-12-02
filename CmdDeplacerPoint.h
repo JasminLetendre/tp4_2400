@@ -17,11 +17,11 @@ protected:
 
 private:
   // Add any private members needed for the command
+  int pointId;
   int ancienX;
   int ancienY;
   int nouveauX;
   int nouveauY;
-  int pointId;
 };
 
 #endif

@@ -23,7 +23,7 @@ void CmdFusionerNuage::doExecute(MiniDesignApp *app) {
   app->getModele().ajouterElement(nuage);
 }
 
-void CmdFusionerNuage::doUndo(MiniDesignApp *app) {
+void CmdFusionerNuage::doUndo(MiniDesignApp *) {
   // Do nothing / not for this tp
 }
 

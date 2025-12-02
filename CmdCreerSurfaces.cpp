@@ -11,6 +11,6 @@ void CmdCreerSurfaces::doExecute(MiniDesignApp *app) {
   app->getModele().recalculerSurface(strategy);
 }
 
-void CmdCreerSurfaces::doUndo(MiniDesignApp *app) {
+void CmdCreerSurfaces::doUndo(MiniDesignApp *) {
   // Do nothing for now
 }

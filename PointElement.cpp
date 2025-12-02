@@ -6,7 +6,7 @@ std::shared_ptr<PointComponent> PointElement::getPointComponent() const {
 }
 
 PointElement::PointElement(std::shared_ptr<PointComponent> p, int id)
-    : point(p), Element(id) {}
+    : Element(id), point(p) {}
 
 void PointElement::deplacer(int dx, int dy) {
   point->getX() = dx;
