@@ -5,10 +5,11 @@ class ModeleOrthese;
 
 class AffichageStrategy {
 private:
-    ModeleOrthese* modele;
+  ModeleOrthese *modele;
+
 public:
-    AffichageStrategy(ModeleOrthese* modele) : modele(modele) {}
-    virtual void afficher() = 0;
-    virtual ~AffichageStrategy() = default;
+  AffichageStrategy(ModeleOrthese *modele) : modele(modele) {}
+  virtual void afficher() = 0;
+  virtual ~AffichageStrategy() = default;
 };
 #endif

@@ -7,9 +7,11 @@ class ModeleOrthese;
 
 class AffichageIdsEtSurfaces : public AffichageStrategy {
 private:
-    ModeleOrthese* modele;
+  ModeleOrthese *modele;
+
 public:
-    AffichageIdsEtSurfaces(ModeleOrthese* modele) : AffichageStrategy(modele), modele(modele) {}
-    void afficher() override;
+  AffichageIdsEtSurfaces(ModeleOrthese *modele)
+      : AffichageStrategy(modele), modele(modele) {}
+  void afficher() override;
 };
 #endif

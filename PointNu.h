@@ -2,23 +2,21 @@
 #define POINT_H
 
 #include "PointComponent.h"
-#include <string>
 #include <memory>
+#include <string>
 
-
-class PointNu : public PointComponent
-{
+class PointNu : public PointComponent {
 private:
-    int x;
-    int y;
+  int x;
+  int y;
 
 public:
-    PointNu(int x, int y);
+  PointNu(int x, int y);
 
-    int& getX() const override;
-    int& getY() const override;
-    std::string getTextures() const override;
-    void addTexture(char symbole) override;
+  int &getX() const override;
+  int &getY() const override;
+  std::string getTextures() const override;
+  void addTexture(char symbole) override;
 };
 
 #endif

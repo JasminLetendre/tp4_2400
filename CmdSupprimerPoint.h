@@ -7,16 +7,18 @@ class MiniDesignApp;
 class Element;
 class CmdSupprimerPoint : public Commande {
 public:
-    virtual ~CmdSupprimerPoint() = default;
-    CmdSupprimerPoint(int pointIdVal) : pointId(pointIdVal), point(nullptr) {}
-    void execute(MiniDesignApp* app) override;
-    void undo(MiniDesignApp* app) override;
+  virtual ~CmdSupprimerPoint() = default;
+  CmdSupprimerPoint(int pointIdVal) : pointId(pointIdVal), point(nullptr) {}
+  void execute(MiniDesignApp *app) override;
+  void undo(MiniDesignApp *app) override;
+
 protected:
-    void doExecute(MiniDesignApp* app) override;
-    void doUndo(MiniDesignApp* app) override;
+  void doExecute(MiniDesignApp *app) override;
+  void doUndo(MiniDesignApp *app) override;
+
 private:
-    int pointId;
-    std::shared_ptr<Element> point;
+  int pointId;
+  std::shared_ptr<Element> point;
 };
 
 #endif

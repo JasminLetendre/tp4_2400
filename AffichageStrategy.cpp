@@ -1,6 +1,3 @@
 #include "AffichageStrategy.h"
 
-
-void AffichageStrategy::afficher() {
-    
-}
+void AffichageStrategy::afficher() {}

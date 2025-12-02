@@ -1,22 +1,21 @@
 #ifndef POINTELEMENT_H
 #define POINTELEMENT_H
 
-#include "PointComponent.h"
 #include "Element.h"
+#include "PointComponent.h"
 #include <memory>
 
-class PointElement: public Element
-{
+class PointElement : public Element {
 private:
-    std::shared_ptr<PointComponent> point;
+  std::shared_ptr<PointComponent> point;
 
 public:
-    PointElement(std::shared_ptr<PointComponent> p,int id);
-    std::shared_ptr<PointComponent> getPointComponent() const;
-    void deplacer(int dx, int dy) override;
-    std::vector<std::shared_ptr<PointComponent>> collecterPoints() override;
-    void appliquerTexture(const std::string& symbole) override;
-    void setPointComponent(std::shared_ptr<PointComponent> p);
+  PointElement(std::shared_ptr<PointComponent> p, int id);
+  std::shared_ptr<PointComponent> getPointComponent() const;
+  void deplacer(int dx, int dy) override;
+  std::vector<std::shared_ptr<PointComponent>> collecterPoints() override;
+  void appliquerTexture(const std::string &symbole) override;
+  void setPointComponent(std::shared_ptr<PointComponent> p);
 };
 
 #endif

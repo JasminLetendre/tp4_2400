@@ -6,12 +6,13 @@
 
 class GestionnaireCommandes {
 private:
-    std::vector<Commande*> pileUndo;
-    std::vector<Commande*> pileRedo;
+  std::vector<Commande *> pileUndo;
+  std::vector<Commande *> pileRedo;
+
 public:
-    void executerCommande(Commande* cmd, MiniDesignApp* app);
-    void undo(MiniDesignApp* app);
-    void redo(MiniDesignApp* app);
+  void executerCommande(Commande *cmd, MiniDesignApp *app);
+  void undo(MiniDesignApp *app);
+  void redo(MiniDesignApp *app);
 };
 
 #endif

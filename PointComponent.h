@@ -5,12 +5,12 @@
 
 class PointComponent {
 public:
-    virtual int& getX() const = 0;
-    virtual int& getY() const = 0;
-    virtual std::string getTextures() const = 0;
-    virtual void addTexture(char symbole) = 0;
+  virtual int &getX() const = 0;
+  virtual int &getY() const = 0;
+  virtual std::string getTextures() const = 0;
+  virtual void addTexture(char symbole) = 0;
 
-    virtual ~PointComponent() = default;
+  virtual ~PointComponent() = default;
 };
 
 #endif

@@ -1,29 +1,31 @@
+#include "AffichageStrategy.h"
+#include "CommandFactory.h"
+#include "GestionnaireCommandes.h"
+#include "MiniDesignApp.h"
+#include "ModeleOrthese.h"
+#include "SurfaceCreationStrategy.h"
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "MiniDesignApp.h"
-#include "ModeleOrthese.h"
-#include "GestionnaireCommandes.h"
-#include "CommandFactory.h"
-#include "AffichageStrategy.h"
-#include "SurfaceCreationStrategy.h"
+
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    string args;
-    // On accepte des points en entrée.
-    if (argc > 1) {
-        ostringstream oss;
-        for (int i = 1; i < argc; ++i) oss << argv[i] << " ";
-        args = oss.str();
-    } else {
-        cout << "Entrez les points au format (x,y) :\n> ";
-        getline(cin, args);
-    }
-    
-    MiniDesignApp app(args);
-    app.executerBoucle();
+int main(int argc, char *argv[]) {
+  string args;
+  // On accepte des points en entrée.
+  if (argc > 1) {
+    ostringstream oss;
+    for (int i = 1; i < argc; ++i)
+      oss << argv[i] << " ";
+    args = oss.str();
+  } else {
+    cout << "Entrez les points au format (x,y) :\n> ";
+    getline(cin, args);
+  }
 
-    return 0;
+  MiniDesignApp app(args);
+  app.executerBoucle();
+
+  return 0;
 }

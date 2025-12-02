@@ -15,21 +15,20 @@
 #include <utility>
 
 MiniDesignApp::MiniDesignApp(const std::string &args)
-    : modele_(std::make_unique<ModeleOrthese>()), 
+    : modele_(std::make_unique<ModeleOrthese>()),
       gestionCmd_(std::make_unique<GestionnaireCommandes>()),
-      factory_(std::make_unique<CommandFactory>()), 
-      affichageCourante_(nullptr),
+      factory_(std::make_unique<CommandFactory>()), affichageCourante_(nullptr),
       surfaceCourante_(nullptr), texturesNuages_{'o', '#', '$'} {
   std::vector<Point> pointsInitiaux = creerPoints(args);
-  
+
   // Create PointElements from the initial points and add them to the model
   int id = 0;
-  for (const auto& point : pointsInitiaux) {
+  for (const auto &point : pointsInitiaux) {
     auto pointNu = std::make_shared<PointNu>(point.x, point.y);
     auto pointElement = std::make_shared<PointElement>(pointNu, id++);
     modele_->ajouterElement(pointElement);
   }
-  
+
   // Set default affichage strategy
   affichageCourante_ = std::make_unique<AffichageTextures>(modele_.get());
 }
@@ -104,40 +103,40 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
   if (cmd == "a") {
     // Implementation of display strategy
     std::cout << "\n=== Affichage des points avec textures ===\n";
-    
+
     auto elements = modele_->getElements();
-    
+
     if (elements.empty()) {
-        std::cout << "Aucun élément à afficher.\n";
-        return true;
+      std::cout << "Aucun élément à afficher.\n";
+      return true;
     }
 
-    
-    for (const auto& element : elements) {
-        auto points = element->collecterPoints();
+    for (const auto &element : elements) {
+      auto points = element->collecterPoints();
 
-        if(points.size() == 1) {
-          std::cout << "Point ID:" << element->id 
-                    << " (" << points[0]->getX() << "," << points[0]->getY() << ")";
-          
-          std::string textures = points[0]->getTextures();
+      if (points.size() == 1) {
+        std::cout << "Point ID:" << element->id << " (" << points[0]->getX()
+                  << "," << points[0]->getY() << ")";
 
-          if (textures.empty()) {
-            textures = " ";
-          }
+        std::string textures = points[0]->getTextures();
 
-          std::cout << " Textures: \'" << textures << "\'";
-          
-          std::cout << "\n";
-        }else{
-          std::cout << "Nuage ID:" << element->id << " contient les elements:";
-
-          for (const auto& enfant : static_cast<NuageElement*>(element.get())->getEnfants()) {
-            std::cout << " " << enfant->id;
-          }
-
-          std::cout << "\n";
+        if (textures.empty()) {
+          textures = " ";
         }
+
+        std::cout << " Textures: \'" << textures << "\'";
+
+        std::cout << "\n";
+      } else {
+        std::cout << "Nuage ID:" << element->id << " contient les elements:";
+
+        for (const auto &enfant :
+             static_cast<NuageElement *>(element.get())->getEnfants()) {
+          std::cout << " " << enfant->id;
+        }
+
+        std::cout << "\n";
+      }
     }
 
     std::cout << std::endl;
@@ -150,15 +149,16 @@ bool MiniDesignApp::traiterCommande(const std::string &cmd) {
     affichageCourante_->afficher();
     return true;
   }
-  
+
   if (cmd == "o2") {
-    affichageCourante_ = std::make_unique<AffichageIdsEtSurfaces>(modele_.get());
+    affichageCourante_ =
+        std::make_unique<AffichageIdsEtSurfaces>(modele_.get());
     std::cout << "Mode d'affichage: IDs et Surfaces\n";
     affichageCourante_->afficher();
     return true;
   }
 
-  if(cmd == "f" || cmd == "d" || cmd == "s" || cmd == "c1" || cmd == "c2") {
+  if (cmd == "f" || cmd == "d" || cmd == "s" || cmd == "c1" || cmd == "c2") {
     auto commande = factory_->createCommand(cmd);
 
     if (!commande) {
