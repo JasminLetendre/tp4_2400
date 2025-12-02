@@ -4,7 +4,6 @@
 #include <iostream>
 #include <sstream>
 
-
 using namespace std;
 
 void tracerLigne(vector<vector<std::string>> &grille, int x0, int y0, int x1,

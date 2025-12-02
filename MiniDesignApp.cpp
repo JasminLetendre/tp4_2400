@@ -21,7 +21,6 @@ MiniDesignApp::MiniDesignApp(const std::string &args)
       surfaceCourante_(nullptr), texturesNuages_{'o', '#', '$'} {
   std::vector<Point> pointsInitiaux = creerPoints(args);
 
-  // Create PointElements from the initial points and add them to the model
   int id = 0;
   for (const auto &point : pointsInitiaux) {
     auto pointNu = std::make_shared<PointNu>(point.x, point.y);
@@ -29,7 +28,6 @@ MiniDesignApp::MiniDesignApp(const std::string &args)
     modele_->ajouterElement(pointElement);
   }
 
-  // Set default affichage strategy
   affichageCourante_ = std::make_unique<AffichageTextures>(modele_.get());
 }
 
@@ -101,7 +99,6 @@ void MiniDesignApp::afficherMenu() const {
 
 bool MiniDesignApp::traiterCommande(const std::string &cmd) {
   if (cmd == "a") {
-    // Implementation of display strategy
     std::cout << "\n=== Affichage des points avec textures ===\n";
 
     auto elements = modele_->getElements();

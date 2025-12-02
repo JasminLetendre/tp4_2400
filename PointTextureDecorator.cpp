@@ -12,7 +12,6 @@ int &PointTextureDecorator::getY() const { return wrappee->getY(); }
 
 std::string PointTextureDecorator::getTextures() const {
   std::string allTextures = wrappee->getTextures() + texture;
-  // Sort textures alphabetically for consistent display
   std::sort(allTextures.begin(), allTextures.end());
   return allTextures;
 }

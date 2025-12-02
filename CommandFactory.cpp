@@ -24,8 +24,7 @@ Commande *CommandFactory::createCommand(const std::string &code) {
     std::string symbole;
     int n;
     std::vector<int> idsElements;
-    std::cout
-        << "Enter new Nuage ID: "; // On devrait probablement en creer nous meme
+    std::cout << "Enter new Nuage ID: ";
     std::cin >> idNuage;
     std::cout << "Enter texture symbol: ";
     std::cin >> symbole;

@@ -21,6 +21,5 @@ void CmdDeplacerPoint::doExecute(MiniDesignApp *app) {
 }
 
 void CmdDeplacerPoint::doUndo(MiniDesignApp *app) {
-  // Implementation of the actual undo logic
   app->getModele().deplacerElement(pointId, ancienX, ancienY);
 }

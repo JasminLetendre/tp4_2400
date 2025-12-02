@@ -16,7 +16,6 @@ protected:
   void doUndo(MiniDesignApp *app) override;
 
 private:
-  // Add any private members needed for the command
   int pointId;
   int ancienX;
   int ancienY;

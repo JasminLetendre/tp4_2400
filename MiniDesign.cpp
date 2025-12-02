@@ -8,12 +8,10 @@
 #include <sstream>
 #include <string>
 
-
 using namespace std;
 
 int main(int argc, char *argv[]) {
   string args;
-  // On accepte des points en entrée.
   if (argc > 1) {
     ostringstream oss;
     for (int i = 1; i < argc; ++i)
