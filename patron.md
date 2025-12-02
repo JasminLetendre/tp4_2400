@@ -61,3 +61,10 @@ Intention.
      Factoriser le “squelette” commun de l’exécution d’une commande, tout en laissant les détails aux sous-classes.
 Application.
      Dans la classe abstraite Commande, la méthode publique execute() suit toujours les mêmes étapes (préparation, appel à doExecute(), enregistrement pour undo). Les commandes concrètes redéfinissent seulement doExecute() et doUndo(). On peut appliquer la même idée côté affichage si nécessaire (préparer la grille, remplir, afficher).
+
+
+## Diagramme de classe
+
+Voici le diagramme de classe que nous avons fait pour la conception de notre application:
+
+![](MiniDesign.drawio.png)
